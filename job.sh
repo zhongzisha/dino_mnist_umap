@@ -17,6 +17,18 @@ main_dino.py --arch vit_small \
 --epochs 300 \
 --output_dir ./saving_dir_mnist_300
 
+VERSION=_v1
+VERSION=_v2
+VERSION=_v3
+python -m torch.distributed.launch \
+--nproc_per_node=8 \
+main_dino.py --arch vit_small \
+--data_path /tmp/zhongz2/images${VERSION}/train \
+--epochs 300 \
+--output_dir ./saving_dir_mnist_300${VERSION} \
+# --global_crops_scale 0.4 1 \
+# --local_crops_scale 0.2 0.4
+
 
 
 CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
@@ -30,6 +42,32 @@ CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
 --data_path /tmp/zhongz2/images \
 --pretrained_weights ./saving_dir_mnist_300/checkpoint0160.pth \
 --savefilename "val_feats_300.pkl"
+
+CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
+--imsize 224 \
+--data_path /tmp/zhongz2/images \
+--pretrained_weights ./saving_dir_mnist_300/checkpoint.pth \
+--savefilename "val_feats_300_final.pkl"
+
+
+CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
+--imsize 224 \
+--data_path /tmp/zhongz2/images_v2 \
+--pretrained_weights ./saving_dir_mnist_300_v2/checkpoint180.pth \
+--savefilename "val_feats_300_v2.pkl"
+
+
+CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
+--imsize 224 \
+--data_path /tmp/zhongz2/images_v2 \
+--pretrained_weights ./saving_dir_mnist_300_v2/checkpoint.pth \
+--savefilename "val_feats_300_v2_final.pkl"
+
+CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
+--imsize 224 \
+--data_path /tmp/zhongz2/images_v1 \
+--pretrained_weights ./saving_dir_mnist_300_v1/checkpoint.pth \
+--savefilename "val_feats_300_v1_final.pkl"
 
 CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
 --imsize 224 \

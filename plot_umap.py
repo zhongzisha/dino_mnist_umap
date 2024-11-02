@@ -8,6 +8,11 @@ import seaborn as sns
 
 postfix = '_official'
 postfix = '_300'
+postfix = '_300_final'
+postfix = '_300_v2'
+postfix = '_300_v2_final'
+postfix = '_300_v1_final'
+
 with open(f'val_feats{postfix}.pkl', 'rb') as fp:
     tmpdata = pickle.load(fp)
     val_feats0 = tmpdata['feats']
