@@ -12,6 +12,8 @@ postfix = '_300_final'
 postfix = '_300_v2'
 postfix = '_300_v2_final'
 postfix = '_300_v1_final'
+postfix = '_300_v3_final'
+postfix = '_300_v3_v1_final'
 
 with open(f'val_feats{postfix}.pkl', 'rb') as fp:
     tmpdata = pickle.load(fp)
