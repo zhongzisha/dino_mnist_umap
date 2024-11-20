@@ -82,6 +82,11 @@ CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
 --pretrained_weights ./saving_dir_mnist_300_v3_v1/checkpoint.pth \
 --savefilename "val_feats_300_v3_v1_final.pkl"
 
+CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
+--imsize 224 \
+--data_path /tmp/zhongz2/images_v3 \
+--pretrained_weights ./saving_dir_mnist_300_v3_v2/checkpoint.pth \
+--savefilename "val_feats_300_v3_v2_final.pkl"
 
 CUDA_VISIBLE_DEVICES=0 python eval_image_retrieval_mnist.py \
 --imsize 224 \
